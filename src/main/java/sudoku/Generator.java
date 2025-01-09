@@ -26,11 +26,42 @@ public class Generator {
             int row = rand.nextInt(9);
             int col = rand.nextInt(9);
             int value = rand.nextInt(9) + 1;
-            if (board.getValue(row, col) == 0) {
+            if (board.getValue(row, col) == 0 && isValid(board, row, col, value)) {
                 board.setValue(row, col, value);
             } else {
                 i--;
             }
         }
+    }
+
+    /**
+     * Verifica se um valor é válido em uma célula de um tabuleiro de Sudoku.
+     * Um valor é considerado válido se ele não violar as regras do Sudoku,
+     * ou seja, se não aparecer na mesma linha, na mesma coluna, nem na mesma subgrade 3x3.
+     * 
+     * @param board O tabuleiro de Sudoku representado por um objeto da classe Board.
+     * @param row A linha (índice de 0 a 8) onde se deseja verificar a validade do valor.
+     * @param col A coluna (índice de 0 a 8) onde se deseja verificar a validade do valor.
+     * @param value O valor a ser inserido na célula, que será validado.
+     * @return Retorna um valor booleano:
+     *         - true se o valor for válido na posição especificada (não se repete na linha, coluna ou subgrade 3x3).
+     *         - false se o valor for inválido (já existe na linha, coluna ou subgrade 3x3).
+     */
+    private static boolean isValid(Board board, int row, int col, int value) {
+        for (int i = 0; i < 9; i++) {
+            if (board.getValue(row, i) == value || board.getValue(i, col) == value) {
+                return false;
+            }
+        }
+        int rowStart = (row / 3) * 3;
+        int colStart = (col / 3) * 3;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (board.getValue(rowStart + i, colStart + j) == value) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
