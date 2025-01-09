@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author caio1
+ * @author caiofdev
  */
 public class Menu {
     private Game game;

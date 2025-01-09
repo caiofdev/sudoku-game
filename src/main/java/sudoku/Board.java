@@ -2,7 +2,7 @@ package sudoku;
 
 /**
  *
- * @author caio1
+ * @author caiofdev
  */
 public class Board {
     private int [][] board;
