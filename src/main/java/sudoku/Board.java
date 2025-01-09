@@ -1,0 +1,74 @@
+package sudoku;
+
+/**
+ *
+ * @author caio1
+ */
+public class Board {
+    private int [][] board;
+    /**
+     * Construtor da classe Board.
+     * 
+     * Este construtor inicializa a variável de instância {@code board} como uma matriz 9x9 de inteiros, 
+     * representando o tabuleiro do jogo. Cada posição da matriz é inicializada com o valor padrão de zero 
+     * (que pode representar um estado vazio ou uma célula não preenchida).
+     * 
+     * A matriz {@code board} pode ser usada para armazenar os estados das células do tabuleiro, 
+     * e será manipulada através de outros métodos da classe {@code Board}.
+     */
+    public Board() {
+        board = new int[9][9];
+    }
+
+    /**
+     * Define um valor para uma posição específica no tabuleiro.
+     * 
+     * Este método permite definir o valor de uma célula no tabuleiro representado pela matriz {@code board}.
+     * Ele atualiza a posição indicada pelas coordenadas {@code row} e {@code col} com o valor fornecido 
+     * no parâmetro {@code value}.
+     *
+     * @param row A linha da célula que será atualizada. Deve ser um valor entre 0 e 8 (inclusive).
+     * @param col A coluna da célula que será atualizada. Deve ser um valor entre 0 e 8 (inclusive).
+     * @param value O valor a ser atribuído à célula especificada. Pode ser qualquer valor inteiro.
+     * 
+     * @throws ArrayIndexOutOfBoundsException Se os parâmetros {@code row} ou {@code col} estiverem fora do intervalo válido (0 a 8).
+     */
+    public void setValue(int row, int col, int value) {
+        board[row][col] = value;
+    }
+
+    /**
+     * Retorna o valor armazenado em uma posição específica do tabuleiro.
+     * 
+     * Este método recupera o valor da célula no tabuleiro representado pela matriz {@code board},
+     * localizada nas coordenadas especificadas pelos parâmetros {@code row} e {@code col}.
+     *
+     * @param row A linha da célula que será acessada. Deve ser um valor entre 0 e 8 (inclusive).
+     * @param col A coluna da célula que será acessada. Deve ser um valor entre 0 e 8 (inclusive).
+     * @return O valor armazenado na célula especificada. O tipo retornado é {@code int}.
+     * 
+     * @throws ArrayIndexOutOfBoundsException Se os parâmetros {@code row} ou {@code col} estiverem fora do intervalo válido (0 a 8).
+     */
+    public int getValue(int row, int col) {
+        return board[row][col];
+    }
+
+    /**
+     * Imprime o tabuleiro no console.
+     * 
+     * Este método percorre a matriz {@code board} e imprime seus valores no console, 
+     * formatando cada linha do tabuleiro em uma nova linha no terminal. Cada valor da célula 
+     * é impresso seguido de dois espaços para separar os números, e uma nova linha é adicionada
+     * após cada linha do tabuleiro para manter a estrutura 9x9.
+     * 
+     * O método não retorna nenhum valor, mas exibe o conteúdo do tabuleiro de forma legível no console.
+     */
+    public void printBoard() {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                System.out.print(board[i][j] + "  ");
+            }
+            System.out.println("\n");
+        }
+    }
+}
