@@ -1,5 +1,8 @@
 package sudoku;
-
+/**
+ *
+ * @author caio1
+ */
 public class Main {
 /**
  * Método principal da aplicação.
