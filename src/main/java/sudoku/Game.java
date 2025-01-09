@@ -171,6 +171,10 @@ public class Game {
             int row = Integer.parseInt(parts[0]) - 1;
             int col = Integer.parseInt(parts[1]) - 1;
             int value = Integer.parseInt(parts[2]);
+            if (value < 1 || value > 9) {
+                System.out.println("Valor inválido. Por favor, insira um valor entre 1 e 9.");
+                return;
+            }
             if (initialValues[row][col]) {
                 System.out.println("\nA entrada (" + (row + 1) + "," + (col + 1) + "," + value +") não foi inserida, pois já possui um valor atribuído.");
             } else {
