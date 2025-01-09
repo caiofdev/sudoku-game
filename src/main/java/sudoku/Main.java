@@ -1,7 +1,8 @@
 package sudoku;
+
 /**
  *
- * @author caio1
+ * @author caiofdev
  */
 public class Main {
 /**
