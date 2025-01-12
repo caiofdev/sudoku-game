@@ -89,6 +89,29 @@ public class Board {
     }
 
     /**
+     * Verifica se o tabuleiro está completamente preenchido.
+     * 
+     * Esta função percorre todas as células do tabuleiro representado pela matriz 
+     * bidimensional `board`. Se qualquer célula contiver o valor `0`, o que 
+     * indica que a célula está vazia, a função retorna `false`. Caso contrário, 
+     * se todas as células estiverem preenchidas (nenhum valor `0`), a função 
+     * retorna `true`.
+     * 
+     * @return `true` se todas as células do tabuleiro estiverem preenchidas, 
+     *         ou `false` caso contrário.
+     */
+    public boolean isFull() {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j] == 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
      * Imprime o tabuleiro no console.
      * 
      * Este método percorre a matriz {@code board} e imprime seus valores no console, 
