@@ -22,19 +22,20 @@ public class Validator {
      *
      * @param board O objeto {@code Board} que representa o tabuleiro a ser validado.
      */
-    public static void validate(Board board) {
-        boolean valid = true;
-        for (int i = 0; i < 9; i++) {
-            if (!isValidRow(board, i) || !isValidColumn(board, i) || !isValidBox(board, i)) {
-                valid = false;
+        public static boolean validate(Board board) {
+            boolean valid = true;
+            for (int i = 0; i < 9; i++) {
+                if (!isValidRow(board, i) || !isValidColumn(board, i) || !isValidBox(board, i)) {
+                    valid = false;
+                }
             }
+            if (valid) {
+                System.out.println("O jogo está correto até o momento.");
+            } else {
+                System.out.println("O jogo contém erros.");
+            }
+            return valid;
         }
-        if (valid) {
-            System.out.println("O jogo está correto até o momento.");
-        } else {
-            System.out.println("O jogo contém erros.");
-        }
-    }
     
     /**
      * Verifica se uma linha do tabuleiro é válida.
@@ -157,7 +158,6 @@ public class Validator {
                 possibleValues.remove(board.getValue(rowStart + i, colStart + j));
             }
         }
-        
         return possibleValues;
     }
 }
