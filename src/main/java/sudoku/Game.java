@@ -84,22 +84,53 @@ public class Game {
             initialValues[row][col] = true;
         }
     }
+
+    /**
+     * Finaliza o jogo e oferece ao jogador a opção de jogar novamente.
+     * 
+     * Esta função é chamada quando o jogador completa o Sudoku corretamente. Ela
+     * exibe uma mensagem de congratulação e pergunta se o jogador deseja jogar
+     * novamente. Se o jogador optar por jogar novamente (digitando "s"), o jogo
+     * será reiniciado com um novo tabuleiro e a função `start()` será chamada para
+     * recomeçar a partida. Caso o jogador não deseje jogar novamente (digitando "n"),
+     * uma mensagem de agradecimento será exibida, e o jogo termina.
+     * 
+     * @see start() A função `start()` é chamada para reiniciar o jogo com um novo
+     *              tabuleiro, se o jogador optar por jogar novamente.
+     */
+    private void end() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Parabéns! Você completou o Sudoku corretamente.");
+        System.out.println("Deseja jogar novamente? (s/n)");
+        String response = scanner.nextLine();
+        if (response.equalsIgnoreCase("s")) {
+            board = new Board();
+            start();
+        } else {
+            System.out.println("Obrigado por jogar!");
+        }
+    }
     
     /**
-     * Inicia e executa o loop principal do jogo.
+     * Inicia o jogo de Sudoku, oferecendo ao jogador um menu de opções interativas.
      * 
-     * Este método é responsável por controlar o fluxo de interação do jogador com o jogo. 
-     * Ele exibe o tabuleiro atual e apresenta um menu com várias opções para o jogador, incluindo:
-     * - Adicionar uma jogada,
-     * - Remover uma jogada,
-     * - Verificar se o tabuleiro está correto,
-     * - Pedir uma dica para uma posição específica,
-     * - Sair do jogo.
+     * Esta função apresenta um menu com 5 opções para o jogador:
+     * 1. Adicionar uma jogada no tabuleiro.
+     * 2. Remover uma jogada previamente feita.
+     * 3. Verificar se o Sudoku está correto.
+     * 4. Solicitar uma dica para uma célula específica.
+     * 5. Sair do jogo.
      * 
-     * O método usa um objeto {@code Scanner} para ler as entradas do jogador e, conforme a escolha 
-     * do jogador, chama os métodos apropriados, como {@code addMove}, {@code removeMove}, 
-     * {@code Validator.validate}, ou {@code giveHint}. O loop continua até que o jogador escolha 
-     * a opção de sair do jogo, momento em que o programa exibe uma mensagem de agradecimento e termina.
+     * Após cada ação, o estado do tabuleiro é exibido novamente. O jogo continua em loop
+     * até que o jogador escolha sair ou complete o tabuleiro corretamente. Se o tabuleiro
+     * estiver cheio e válido, a função `end()` é chamada para encerrar o jogo e perguntar
+     * se o jogador deseja jogar novamente.
+     * 
+     * @see addMove(String) A função chamada para adicionar uma jogada ao tabuleiro.
+     * @see removeMove(String) A função chamada para remover uma jogada do tabuleiro.
+     * @see Validator.validate(Board) A função chamada para verificar se o tabuleiro está correto.
+     * @see giveHint(String) A função chamada para fornecer uma dica ao jogador para uma célula.
+     * @see end() A função chamada quando o jogo é concluído, oferecendo a opção de jogar novamente.
      */
     public void start() {
         Scanner scanner = new Scanner(System.in);
@@ -141,6 +172,9 @@ public class Game {
             } else if (choice == 5) {
                 System.out.println("\nObrigado por jogar!");
                 break;
+            }
+            if (board.isFull() && Validator.validate(board)) {
+                end();
             }
         }
     }
